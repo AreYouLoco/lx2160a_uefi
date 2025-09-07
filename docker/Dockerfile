@@ -1,18 +1,17 @@
 # use debian base
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 # update
 RUN set -e; \
-	apt-get update; \
-	apt-get -y upgrade; \
-	:
+        apt-get update; \
+        apt-get -y upgrade; \
+        :
 
 RUN apt-get update ; apt-get -y --no-install-recommends install \
-	wget make acpica-tools device-tree-compiler xz-utils \
-	sudo git gettext-base uuid-dev bc gcc g++ python3 \ 
-	libc6-dev libssl-dev python3-distutils ca-certificates
-
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
+        wget make acpica-tools device-tree-compiler xz-utils \
+        sudo git gettext-base uuid-dev bc gcc g++ python3 \
+        python3-pycryptodome python-is-python3 python3-pyelftools \
+        libc6-dev libssl-dev python3-distutils ca-certificates
 
 # build environment
 ARG ddr=2400
